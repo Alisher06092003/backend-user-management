@@ -397,7 +397,9 @@ tbody tr td:last-child { border-top-right-radius: 5px; border-bottom-right-radiu
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5 text-blue-900">${user.phone2}</td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5 text-blue-900">${user.team}</td>
             <td class="px-5 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                <button class="delete-btn px-2 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-index="${index}">O‘chirish</button>
+            <button class="delete-btn px-2 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-id="${user._id}">
+             O‘chirish
+             </button>
             </td>
         `;
         tableBody.appendChild(row);
@@ -405,19 +407,19 @@ tbody tr td:last-child { border-top-right-radius: 5px; border-bottom-right-radiu
 
     // 🔥 O‘chirish tugmasiga event qo‘shish
     document.querySelectorAll('.delete-btn').forEach(button => {
-        button.addEventListener('click', async (event) => {
-            const index = event.target.getAttribute('data-index');
-            
-            const response = await fetch(`http://localhost:5000/users/${index}`, {
-                method: 'DELETE'
-            });
+    button.addEventListener('click', async (event) => {
+        const userId = event.target.getAttribute('data-id'); // 🔥 Endi _id ishlatamiz!
 
-            const data = await response.json();
-            alert(data.message); // 🔥 Javobni ekranga chiqarish
-            
-            location.reload(); // 🔥 Jadvalni yangilash
+        const response = await fetch(`http://localhost:5000/users/${userId}`, {
+            method: 'DELETE'
         });
+
+        const data = await response.json();
+        alert(data.message); // 🔥 Javobni ekranga chiqarish
+
+        location.reload(); // 🔥 Jadvalni yangilash
     });
+});
 });
 
     module.exports = {

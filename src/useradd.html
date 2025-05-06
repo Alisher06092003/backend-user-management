@@ -150,7 +150,7 @@
         <div class="relative z-0 w-full mb-5">
           <input
             type="tel"
-            name="tel"
+            name="phone1"
             placeholder=" "
             class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
           />
@@ -160,7 +160,7 @@
         <div class="relative z-0 w-full mb-5">
             <input
               type="tel"
-              name="tel"
+              name="phone2"
               placeholder=" "
               class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
             />
@@ -212,12 +212,12 @@
     const formData = {
         name: document.querySelector('input[name="te"]').value,
         surname: document.querySelector('input[name="text"]').value,
-        phone1: document.querySelector('input[name="tel"]').value,
-        phone2: document.querySelectorAll('input[name="tel"]')[1].value,
+        phone1: document.querySelector('input[name="phone1"]').value,
+        phone2: document.querySelector('input[name="phone2"]').value,
         team: document.querySelector('select[name="select"]').value
     };
 
-    const response = await fetch('http://localhost:5000/register', {
+    const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
